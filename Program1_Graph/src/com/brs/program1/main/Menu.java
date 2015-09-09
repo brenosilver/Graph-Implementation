@@ -71,6 +71,8 @@ public class Menu {
 		}
 		catch(InputMismatchException e){
 			System.out.println("Invalid input. Please enter a number between 1 and " + State.values().length + ".");
+			selected = -1;
+			scan.nextLine(); // clear the buffer
 		}
 		
 		if(selected < 0 || selected > State.values().length-1){
