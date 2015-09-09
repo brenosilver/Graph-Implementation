@@ -64,20 +64,18 @@ public class Menu {
 		
 
 		// while the option selected is not in the state, prompt again.
-		do{
-			try{
-				System.out.println("Please choose an option...");	
-				displayOptions();
-				selected = scan.nextInt()-1;
-			}
-			catch(InputMismatchException e){
-				System.out.println("Invalid input. Please enter a number between 1 and " + State.values().length + ".");
-				selected = -1;
-				scan.nextLine(); // clear the buffer
-				continue;
-			}
+		try{
+			System.out.println("Please choose an option...");	
+			displayOptions();
+			selected = scan.nextInt()-1;
 		}
-		while(selected < 0 || selected > State.values().length-1);
+		catch(InputMismatchException e){
+			System.out.println("Invalid input. Please enter a number between 1 and " + State.values().length + ".");
+		}
+		
+		if(selected < 0 || selected > State.values().length-1){
+			displayMenu(scan);
+		}
 						
 		return State.values()[selected];
 	}
