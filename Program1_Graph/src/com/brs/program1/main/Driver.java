@@ -3,7 +3,7 @@ package com.brs.program1.main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -85,7 +85,7 @@ public class Driver {
 		} catch (FileNotFoundException e) {
 			System.err.println("File not found! " + e.getMessage());
 		}
-		Map< Integer, List<Integer>> result = new HashMap<Integer, List<Integer>>();
+		Map< Integer, List<Integer>> result = new LinkedHashMap<Integer, List<Integer>>();
 		
 		
 		while(scan.hasNextLine()){

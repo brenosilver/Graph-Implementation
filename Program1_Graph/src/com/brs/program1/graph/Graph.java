@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -40,7 +41,7 @@ public class Graph {
 	 */
 	private Map<Node<Integer>, List<Node<Integer>>> processList(Map<Integer, List<Integer>> map){
 		
-		Map<Node<Integer>, List<Node<Integer>>> result = new HashMap<Node<Integer>, List<Node<Integer>>>();
+		Map<Node<Integer>, List<Node<Integer>>> result = new LinkedHashMap<Node<Integer>, List<Node<Integer>>>();
 		Iterator<Map.Entry<Integer, List<Integer>>> parentIt = map.entrySet().iterator();
 			
 
