@@ -61,8 +61,13 @@ public class Graph {
 		while(parentIt2.hasNext()){
 			Entry<Integer, List<Integer>> entry = parentIt2.next();
 			
+			
+			List<Node<Integer>> rootNeighbors = new ArrayList<Node<Integer>>();
+			
+			// set the adjacency links of all the neighbor nodes
 			for(Integer val : entry.getValue()){
 				Node<Integer> currentNeighbor = new Node<Integer>(val);
+				rootNeighbors.add(nodePool.get(val));
 				
 				if(!nodePool.containsKey(val)){
 					nodePool.put(val, currentNeighbor);
@@ -71,11 +76,14 @@ public class Graph {
 				Node<Integer> poolNode = nodePool.get(val);
 				List<Node<Integer>> resultNeighbors = result.get(currentNeighbor);
 				
-				poolNode.setAdjancentList(resultNeighbors);
-				result.get(new Node<Integer>(entry.getKey())).add(poolNode);
-				
-				//System.out.println(result.get(currentNeighbor) + " " + val);
+				poolNode.setAdjacencyList(resultNeighbors);
+				result.get(new Node<Integer>(entry.getKey())).add(poolNode);			
+
 			}
+			
+			// set the adjacency list of all the root nodes in case it's a disconnected graph 
+			// and they were not set above.
+			getNodeFromList(entry.getKey(), result).setAdjacencyList(rootNeighbors);
 		}
 		
 				
@@ -94,7 +102,7 @@ public class Graph {
 		this.visited.add(root);
 		
 		sb.append(root);
-		for( Node<Integer> adj :  root.getAdjancentList()){
+		for( Node<Integer> adj :  root.getAdjacencyList()){
 			sb.append(" -> ");
 			sb.append(adj);
 			
@@ -139,7 +147,7 @@ public class Graph {
 			root = queue.poll();
 			sb.append(root);
 			
-			for( Node<Integer> adj :  root.getAdjancentList()){
+			for( Node<Integer> adj :  root.getAdjacencyList()){
 				sb.append(" -> ");
 				sb.append(adj);
 				
@@ -196,6 +204,15 @@ public class Graph {
 		return null;
 	}
 	
+	private Node<Integer> getNodeFromList(int val,  Map<Node<Integer>, List<Node<Integer>>> list){
+		for ( Node<Integer> key : list.keySet() ) {
+		    if(key.getVertex().equals(val)){
+		    	return key;		    	
+		    }
+		}
+		return null;
+	}
+	
 	public boolean contains(Node<Integer> node){
 		return this.adjacencyList.containsKey(node);
 	}
@@ -213,8 +230,8 @@ public class Graph {
 		for ( Node<Integer> key : adjacencyList.keySet() ) {
 		   sb.append(key);
 		   
-		   if(key.getAdjancentList() != null){
-			   for(Node<Integer> adjs : key.getAdjancentList()){
+		   if(key.getAdjacencyList() != null){
+			   for(Node<Integer> adjs : key.getAdjacencyList()){
 				   sb.append(separator);
 				   sb.append(adjs);
 			   }

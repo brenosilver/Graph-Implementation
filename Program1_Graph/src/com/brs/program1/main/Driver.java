@@ -54,11 +54,15 @@ public class Driver {
 							
 			case EXIT:		return;
 				
-			case DFS:		graph.depthFirstSearch(graph.getNode(2));
+			case DFS:		System.out.println("Please enter root node...");
+							int choice = scan.nextInt();
+							graph.depthFirstSearch(graph.getNode(choice));
 							init(menu, scan);
 							break;
 			
-			case BFS:		graph.breathFirstSearch(graph.getNode(2));
+			case BFS:		System.out.println("Please enter root node...");
+							int choice2 = scan.nextInt();
+							graph.breathFirstSearch(graph.getNode(choice2));
 							init(menu, scan);
 							break;
 			

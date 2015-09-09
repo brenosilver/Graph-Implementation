@@ -97,13 +97,12 @@ public class Menu {
 		System.out.println(sb.toString());
 	}
 	
-	
 
 	
-	public int getOption() {
+	public int getSelected() {
 		return selected;
 	}
-	public void setOption(int option) {
+	public void setSelected(int option) {
 		this.selected = option;
 	}
 	

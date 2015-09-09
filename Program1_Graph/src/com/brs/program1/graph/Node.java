@@ -11,17 +11,17 @@ import java.util.List;
 public class Node<T> {
 
 	private T vertex;
-	private List<Node<T>> adjancentList;
+	private List<Node<T>> adjacencyList;
 	
 	
 	public Node(T vertex) {
 		this.vertex = vertex;
-		this.adjancentList = null;
+		this.adjacencyList = null;
 	}
 
 	public Node(T vertex, List<Node<T>> adjancentList) {
 		this.vertex = vertex;
-		this.adjancentList = adjancentList;
+		this.adjacencyList = adjancentList;
 	}
 
 
@@ -65,11 +65,11 @@ public class Node<T> {
 	public String toString() {
 		return this.vertex.toString();
 	}
-	public List<Node<T>> getAdjancentList() {
-		return adjancentList;
+	public List<Node<T>> getAdjacencyList() {
+		return adjacencyList;
 	}
-	public void setAdjancentList(List<Node<T>> adjancentList) {
-		this.adjancentList = adjancentList;
+	public void setAdjacencyList(List<Node<T>> adjacencyList) {
+		this.adjacencyList = adjacencyList;
 	}
 	
 }
