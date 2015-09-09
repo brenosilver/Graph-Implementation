@@ -89,7 +89,13 @@ public class Driver {
 		
 		
 		while(scan.hasNextLine()){
-			String line = scan.nextLine();
+			
+			String line = scan.nextLine().trim();
+			
+			// jump empty lines
+			if(line.length() == 0){
+				continue;
+			}
 			
 			//create StringTokenizer, parsing with space
 			StringTokenizer st1 = new StringTokenizer(line, " ");
@@ -109,7 +115,6 @@ public class Driver {
 		}
 
 		scan.close();
-		
 		return result;
 	}
 	
