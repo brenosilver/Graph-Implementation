@@ -163,7 +163,7 @@ public class Graph {
 	/**
 	 * Initializes the breath first search and clear the visited nodes after.
 	 * @param root
-	 * @return String representation of the search.
+	 * @return Set of visited nodes by the search.
 	 */
 	public Set<Node<Integer>> breathFirstSearch(Node<Integer> root){
 		Set<Node<Integer>> result = new LinkedHashSet<Node<Integer>>(bfs(root));
