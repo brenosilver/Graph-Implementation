@@ -89,6 +89,7 @@ public class Driver {
 		Map< Integer, List<Integer>> result = new LinkedHashMap<Integer, List<Integer>>();
 		
 		
+		int key = 0;
 		while(scan.hasNextLine()){
 			
 			String line = scan.nextLine().trim();
@@ -103,12 +104,20 @@ public class Driver {
 			
 			List<Integer> list = new ArrayList<Integer>();
 			
-			Integer key = null;
 			if(st1.hasMoreTokens()){
-				key = Integer.valueOf(st1.nextToken());
+				key++;
 				
 				while(st1.hasMoreTokens()){
-					list.add(Integer.valueOf(st1.nextToken()));
+					
+					int vertexVal = Integer.valueOf(st1.nextToken());
+					
+					// Vertex cannot be less or equal to 0.
+					// In this case we don't add it to the adjacency list.
+					if(vertexVal <= 0){
+						continue;
+					}
+					
+					list.add(vertexVal);
 				}
 			}
 			result.put(key, list);
