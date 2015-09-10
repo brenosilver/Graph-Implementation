@@ -20,11 +20,11 @@ import com.brs.program1.main.Menu.State;
 public class Driver {
 	private static final String ADJ_LIST_PATH = "src/adjacencyList";
 	
-	private static Map< Integer, List<Integer>> adjacencyList = null;
+	private static Map< Integer, List<Integer>> adjacencyList;
 	private static Graph graph = null;
 
 	public static void main(String[] args) {
-
+		adjacencyList = new LinkedHashMap<Integer, List<Integer>>();
 		Scanner scan = new Scanner(System.in);
 		Menu menu = new Menu();
 		init(menu, scan);
@@ -48,21 +48,22 @@ public class Driver {
 							init(menu, scan);
 							break;
 						
-			case DISPLAY:	System.out.println(graph.toString());
+			case DISPLAY:	if(adjacencyList.isEmpty()) init(menu, scan);
+							System.out.println(graph.toString());
 							init(menu, scan);
 							break;
 							
 			case EXIT:		return;
 				
-			case DFS:		System.out.println("Please enter root node...");
-							int choice = scan.nextInt();
-							graph.depthFirstSearch(graph.getNode(choice));
+			case DFS:		if(adjacencyList.isEmpty()) init(menu, scan);
+							System.out.println("Please enter root node...");
+							graph.depthFirstSearch(graph.getNode(scan.nextInt()));
 							init(menu, scan);
 							break;
 			
-			case BFS:		System.out.println("Please enter root node...");
-							int choice2 = scan.nextInt();
-							graph.breathFirstSearch(graph.getNode(choice2));
+			case BFS:		if(adjacencyList.isEmpty()) init(menu, scan);
+							System.out.println("Please enter root node...");
+							graph.breathFirstSearch(graph.getNode(scan.nextInt()));
 							init(menu, scan);
 							break;
 			
@@ -117,6 +118,7 @@ public class Driver {
 		scan.close();
 		return result;
 	}
+
 	
 
 }

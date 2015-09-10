@@ -3,9 +3,10 @@ package com.brs.program1.graph;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,7 +22,7 @@ public class Graph {
 	
 	private Map<Node<Integer>, List<Node<Integer>>> adjacencyList;
 	private Map<Integer, Node<Integer>> nodePool;
-	private Set<Node<Integer>> visited = new HashSet<Node<Integer>>();
+	private Set<Node<Integer>> visited = new LinkedHashSet<Node<Integer>>();
 	
 	
 	
@@ -98,34 +99,31 @@ public class Graph {
 	 * @param root
 	 * @return
 	 */
-	private String dfs(Node<Integer> root){
-		StringBuilder sb = new StringBuilder();
+	private Set<Node<Integer>> dfs(Node<Integer> root){
 		this.visited.add(root);
-		
-		sb.append(root);
+
+		System.out.println(visited);
+
 		for( Node<Integer> adj :  root.getAdjacencyList()){
-			sb.append(" -> ");
-			sb.append(adj);
-			
+
 			if(!(this.visited.contains(adj))){
 				dfs(adj);
 			}
 		}
-
-		System.out.println(sb.toString());
-		return sb.toString();
+		
+		return visited;
 	}
 	
 	
 	/**
 	 * Initializes the depth first search and clear the visited nodes after.
 	 * @param root
-	 * @return String representation of the search.
+	 * @return Set of visited nodes by the search.
 	 */
-	public String depthFirstSearch(Node<Integer> root){
-		String result = dfs(root);
+	public Set<Node<Integer>> depthFirstSearch(Node<Integer> root){
+		Set<Node<Integer>> result = dfs(root);
 		this.visited.clear();
-		
+
 		return result;
 	}
 	
@@ -177,7 +175,7 @@ public class Graph {
 	}
 	
 	
-	public String DepthFirstSearch(Integer root){
+	public Set<Node<Integer>> DepthFirstSearch(Integer root){
 		return depthFirstSearch(new Node<Integer>(root));
 	}
 	
