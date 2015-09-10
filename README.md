@@ -1,6 +1,6 @@
 # Graph-Implementation
   
-Input
+**Input**  
   
 0 1  
 1 0  
@@ -10,7 +10,7 @@ Input
 5 4 6  
 6 4 5  
   
-Output
+**Output**  
 
 Please choose an option...  
 1- READ FROM FILE  
@@ -20,7 +20,7 @@ Please choose an option...
 5- EXIT  
 
   
-DISPLAY  
+**DISPLAY**  
 0 -> 1  
 1 -> 0  
 2 -> 1  
