@@ -22,11 +22,12 @@ public class Graph {
 	
 	private Map<Node<Integer>, List<Node<Integer>>> adjacencyList;
 	private Map<Integer, Node<Integer>> nodePool;
-	private Set<Node<Integer>> visited = new LinkedHashSet<Node<Integer>>();
+	private Set<Node<Integer>> visited;
 	
 	
 	
 	public Graph(Map<Integer, List<Integer>> adjacencyList) {
+		this.visited = new LinkedHashSet<Node<Integer>>();
 		this.nodePool = new HashMap<Integer, Node<Integer>>();
 		this.adjacencyList = processList(adjacencyList);
 		
@@ -121,8 +122,8 @@ public class Graph {
 	 * @return Set of visited nodes by the search.
 	 */
 	public Set<Node<Integer>> depthFirstSearch(Node<Integer> root){
-		Set<Node<Integer>> result = dfs(root);
-		this.visited.clear();
+		Set<Node<Integer>> result = new LinkedHashSet<Node<Integer>>(dfs(root));
+		visited.clear();
 
 		return result;
 	}
@@ -134,32 +135,29 @@ public class Graph {
 	 * @param root
 	 * @return
 	 */
-	private String bfs(Node<Integer> root){
+	private Set<Node<Integer>> bfs(Node<Integer> root){
 		Queue<Node<Integer>> queue = new ArrayDeque<Node<Integer>>();
-		StringBuilder sb = new StringBuilder();
+
+		visited.add(root);
+		System.out.println(visited);
 		
-		this.visited.add(root);
 		queue.add(root);
 		
 		while( !(queue.isEmpty()) ){
-			
 			root = queue.poll();
-			sb.append(root);
-			
+		
 			for( Node<Integer> adj :  root.getAdjacencyList()){
-				sb.append(" -> ");
-				sb.append(adj);
-				
-				if(!(this.visited.contains(adj))){
-					this.visited.add(adj);
+				if(!(visited.contains(adj))){
+					visited.add(adj);
+					System.out.println(visited);
 					queue.add(adj);
 				}
 			}
-			sb.append("\n");
+	
 		}
 		
-		System.out.println(sb.toString());
-		return sb.toString();
+
+		return visited;
 	}
 	
 	/**
@@ -167,10 +165,10 @@ public class Graph {
 	 * @param root
 	 * @return String representation of the search.
 	 */
-	public String breathFirstSearch(Node<Integer> root){
-		String result = bfs(root);
-		this.visited.clear();
-		
+	public Set<Node<Integer>> breathFirstSearch(Node<Integer> root){
+		Set<Node<Integer>> result = new LinkedHashSet<Node<Integer>>(bfs(root));
+		visited.clear();
+
 		return result;
 	}
 	
